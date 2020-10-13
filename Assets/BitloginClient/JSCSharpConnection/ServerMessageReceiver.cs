@@ -17,7 +17,7 @@ namespace JSCSharpConnection
         /// </summary>
         void MessageReceivedFromServer(string message)
         {
-            Debug.Log($"[Received] {message}");
+            Debug.Log($"C# [Received] {message}");
             _messageReceivedFromServer.Raise(new MessageFromServer(message));
         }
     }

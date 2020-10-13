@@ -67,4 +67,5 @@ ehthumbs.db
 # Crashlytics generated file #
 # ========================== #
 crashlytics-build.properties
-
+# Debug tools
+[Aa]ssets/Plugins/*
