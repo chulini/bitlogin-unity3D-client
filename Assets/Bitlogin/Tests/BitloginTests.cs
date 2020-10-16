@@ -30,28 +30,6 @@ namespace Tests
         }
         
         [Test]
-        public void Bitlogin_SuccessLogout()
-        {
-            BitloginClient bitloginClient = new BitloginClient();
-            BitloginServer bitloginServer = new BitloginServer(Random.value);
-
-            HiMessage hiMessage = bitloginClient.GetHiMessage();
-            BitloginProtocolMessage okSignThisMessage = bitloginServer.GetOkSignThisMessage(hiMessage);
-            Assert.IsTrue(okSignThisMessage is OkSignThisMessage,
-                "bitloginServer.GetOkSignThisMessage() returning not a OkSignThisMessage");
-            VerifyMeMessage verifyMeMessage = bitloginClient.GetVerifyMeMessage(okSignThisMessage as OkSignThisMessage);
-
-            BitloginProtocolMessage authenticationResult = bitloginServer.GetAuthenticationResult(verifyMeMessage);
-            Assert.IsTrue(authenticationResult is AuthenticationSuccess,
-                "bitloginServer.GetAuthenticationResult() returning not a AuthenticationSuccess");
-            Account.VerificationState currentClientVerificationStateInServer =
-                bitloginServer.GetVerificationStateOfAccount(bitloginClient.LegacyAddress);
-            Assert.IsTrue(currentClientVerificationStateInServer == Account.VerificationState.verified);
-   
-            
-        }
-        
-        [Test]
         public void Bitlogin_FailedLogin_ClientAlreadyInTheSystem()
         {
             BitloginClient bitloginClient = new BitloginClient();

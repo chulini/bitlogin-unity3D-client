@@ -70,6 +70,12 @@ namespace Bitlogin
         {
             return _mnemonic.DeriveExtKey().PrivateKey.SignMessage(messageToSign);
         }
+        
+        // TODO make tests
+        public bool VerifyReceivedMessage(MessageToReceive messageToReceive)
+        {
+            return SignatureVerifier.VerifyReceivedMessage(messageToReceive);
+        }
 
         public LogOutRequestMessage GetLogOutRequestMessage()
         {

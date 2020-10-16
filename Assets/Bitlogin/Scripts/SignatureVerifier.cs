@@ -28,5 +28,20 @@ namespace Bitlogin
                 return SignatureVerificationResult.StringSentIsNotASignature;
             }
         }
+        
+        public static bool VerifyReceivedMessage(MessageToReceive messageToReceive)
+        {
+            SignatureVerificationResult signatureVerificationResult = Verify(
+                messageToReceive.legacyAddress,
+                messageToReceive.message,
+                messageToReceive.signature
+            );
+            
+            if (signatureVerificationResult == SignatureVerificationResult.SignatureIsValid)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

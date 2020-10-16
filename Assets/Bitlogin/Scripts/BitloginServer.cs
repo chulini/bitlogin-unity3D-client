@@ -103,5 +103,17 @@ namespace Bitlogin
 
             return Account.VerificationState.unknown;
         }
+        
+        // TODO make tests
+        public bool VerifyReceivedMessage(MessageToReceive messageToReceive)
+        {
+            Account.VerificationState verificationState = GetVerificationStateOfAccount(messageToReceive.legacyAddress);
+            if (verificationState != Account.VerificationState.verified)
+            {
+                // Bitlogin assumes an unverified account send unverified messages just for security
+                return false;
+            }
+            return SignatureVerifier.VerifyReceivedMessage(messageToReceive);
+        }
     }
 }
